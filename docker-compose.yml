@@ -13,6 +13,17 @@ services:
       - .env
     restart: always
 
+  createbucket:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      sleep 10;
+      mc alias set local http://minio:9000 minioadmin minioadmin;
+      mc mb demotest;
+      exit 0;"
+
   model:
     build:
       context: ../
