@@ -22,23 +22,36 @@ resources:
     max: 0
 
 parameters: # model initialization params
-  - name: weight
+  - name: seed
     type: int
     default: 5
 
 inputs:
-  - name: input1
+  - name: some_raster
+    format: raster
+    is_artifact: true
+    type: url
+    properties:
+  - name: some_vector
+    format: vector
+    is_artifact: true
+    type: url
+    properties:
+  - name: some_string
     format: string
     type: str
-
-  - name: input2
-    format: number
-    type: int
+    properties:
 
 outputs:
-  - name: output1
-    format: number
-    type: int
+  - name: vector
+    format: vector
+    is_artifact: true
+    type: url
+    properties:
+  - name: another_string
+    format: string
+    type: str
+    properties:
 
 build:
   python-version: "3.10"
@@ -46,10 +59,10 @@ build:
   gdal: true
   apt-get:
     - wget
-  requirements: #requirements.txt  or conda.yml
+  requirements: requirements.txt
 
 runtime_opts:
-  image: 269716152256.dkr.ecr.us-east-2.amazonaws.com/demo_test:sample-version
+  image: 269716152256.dkr.ecr.us-east-2.amazonaws.com/demo-test:sample-version
   K8sJobConfig: null
   gpu: false
 

@@ -49,7 +49,7 @@ build:
   requirements: #requirements.txt  or conda.yml
 
 runtime_opts:
-  image: 269716152256.dkr.ecr.us-east-2.amazonaws.com/demo_test:sample-version
+  image: 269716152256.dkr.ecr.us-east-2.amazonaws.com/demo-test:sample-version
   K8sJobConfig: null
   gpu: false
 

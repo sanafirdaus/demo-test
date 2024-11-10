@@ -11,12 +11,12 @@ RUN apt-get update && \
 
 ENV PYTHONBUFFERED 1
 RUN echo ${EXECUTOR}
-COPY demo_test/requirements.txt .
+COPY demo-test/requirements.txt .
 
 ADD ./clay/python /app/clay/python
 RUN pip3 install -r requirements.txt -r /app/clay/python/requirements/requirements-dev.txt
 RUN pip3 install /app/clay/python
 
-COPY demo_test/demo_test /app
+COPY demo-test/demo-test /app
 
 ENTRYPOINT ["python3", "entry.py"]

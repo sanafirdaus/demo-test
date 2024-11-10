@@ -10,5 +10,5 @@ The folder structure needs to be:
 
 MLOPs
 |----clay
-|----Demo_test
+|----demo-test
 

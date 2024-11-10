@@ -100,7 +100,7 @@ jobs:
           secrets: |
               CODEARTIFACT_AUTH_TOKEN=${{ env.CODEARTIFACT_AUTH_TOKEN }}
           tags: |
-              ${{ env.ECR_REGISTRY }}/demo_test:${{ env.IMAGE_TAG }}
+              ${{ env.ECR_REGISTRY }}/demo-test:${{ env.IMAGE_TAG }}
 
 
   update-docker-in-specfile-dev:
@@ -137,7 +137,7 @@ jobs:
 
       - name: Create local changes
         run: |
-            sed -i "s|image:.*|image: \"${{ env.ECR_REGISTRY }}/demo_test:${{ steps.image_tag.outputs.value }}\"|" demo_test/specifications/model_specification_dev.yaml
+            sed -i "s|image:.*|image: \"${{ env.ECR_REGISTRY }}/demo-test:${{ steps.image_tag.outputs.value }}\"|" demo-test/specifications/model_specification_dev.yaml
 
       - name: Commit files
         run: |
@@ -191,11 +191,11 @@ jobs:
         uses: pietrobolcato/action-read-yaml@1.1.0
         id: read_action_js
         with:
-            config: ${{ github.workspace }}/demo_test/specifications/model_specification_dev.yaml
+            config: ${{ github.workspace }}/demo-test/specifications/model_specification_dev.yaml
 
       - name: Update model on dexter
         run: |
-          clay update block demo_test/specifications/model_specification_dev.yaml -n demo_test -v ${{ steps.read_action_js.outputs['version'] }} --env dev
+          clay update block demo-test/specifications/model_specification_dev.yaml -n demo-test -v ${{ steps.read_action_js.outputs['version'] }} --env dev
 
 
   update-block-in-stg:
@@ -237,8 +237,8 @@ jobs:
         uses: pietrobolcato/action-read-yaml@1.1.0
         id: read_action_js
         with:
-            config: ${{ github.workspace }}/demo_test/specifications/model_specification_stg.yaml
+            config: ${{ github.workspace }}/demo-test/specifications/model_specification_stg.yaml
 
       - name: Update model on dexter
         run: |
-            clay update block demo_test/specifications/model_specification_stg.yaml -n demo_test -v ${{ steps.read_action_js.outputs['version'] }} --env stg
+            clay update block demo-test/specifications/model_specification_stg.yaml -n demo-test -v ${{ steps.read_action_js.outputs['version'] }} --env stg

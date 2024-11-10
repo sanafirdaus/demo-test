@@ -16,7 +16,7 @@ services:
   model:
     build:
       context: ../
-      dockerfile: demo_test/Dockerfile
+      dockerfile: demo-test/Dockerfile
     container_name: model
     volumes:
       - ../clay/python:/app/clay/python
